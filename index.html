@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ES-Alert CV · Simulador</title>
+<style>
+:root{--bg:#0a101a;--panel:#111c2b;--panel2:#162438;--line:#273950;--text:#eaf2fb;--muted:#91a5bd;--red:#ff4f64;--orange:#ffad42;--yellow:#f5d65c;--green:#4ed6a1;--blue:#54b9ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#17263b 0,#0a101a 58%);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #39506c;background:#1c3048;color:var(--text);border-radius:9px;padding:9px 12px;font-weight:650}button:hover{filter:brightness(1.15)}button.primary{background:#bd293e;border-color:#ff6c7d}button.good{background:#176c57;border-color:#38c99b}button.ghost{background:transparent}button:disabled{opacity:.45;cursor:not-allowed}.top{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:#0b1421eF;position:sticky;top:0;z-index:4;backdrop-filter:blur(12px)}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#d62f43,#8e1428);display:grid;place-items:center;font-size:20px;font-weight:900;box-shadow:0 5px 24px #d62f4333}.brand h1{font-size:17px;margin:0;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:11px}.topright{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#142236;padding:7px 10px;border-radius:999px;color:#c6d7e9;font-size:12px}.pill strong{color:white}.warning{padding:8px 18px;background:#3a2812;color:#ffd59c;border-bottom:1px solid #74501d;text-align:center;font-size:12px}.layout{max-width:1600px;margin:auto;padding:16px;display:grid;grid-template-columns:minmax(270px,330px) minmax(350px,1fr) minmax(280px,350px);gap:14px}.column{display:flex;flex-direction:column;gap:14px;min-width:0}.card{background:linear-gradient(160deg,#142237,#101a29);border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 10px 30px #0002}.cardhead{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px}.cardhead h2{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.8px}.cardbody{padding:14px}.muted{color:var(--muted)}.tiny{font-size:11px}.field{display:flex;flex-direction:column;gap:5px;margin-bottom:11px}.field label{font-size:12px;color:#afc2d8;font-weight:650}.field input,.field select,.field textarea{width:100%;background:#091421;border:1px solid #344961;border-radius:8px;padding:9px;color:var(--text);outline:none}.field textarea{min-height:80px;resize:vertical}.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.btnrow button{flex:1}.sectionlabel{font-size:11px;text-transform:uppercase;color:#8da4bf;letter-spacing:1px;margin:15px 0 8px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#0b1624;border:1px solid #263950;padding:10px;border-radius:10px}.stat span{display:block;font-size:10px;color:var(--muted);text-transform:uppercase}.stat strong{font-size:20px;display:block;margin-top:2px}.mapwrap{position:relative;background:#091624;min-height:430px;overflow:hidden}.maptitle{position:absolute;top:12px;left:14px;z-index:2;background:#0b1827dd;border:1px solid #2a4058;padding:7px 10px;border-radius:9px;font-size:12px}.maplegend{position:absolute;bottom:12px;left:12px;z-index:2;display:flex;gap:8px;flex-wrap:wrap;background:#0b1827dd;padding:8px 10px;border-radius:9px;border:1px solid #2a4058;font-size:10px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}.mapwrap svg{width:100%;height:100%;min-height:430px;display:block}.region{fill:#1c3446;stroke:#53758c;stroke-width:2}.province{fill:#203d51;stroke:#5b7f93;stroke-width:1.5;cursor:pointer;transition:fill .2s}.province:hover{fill:#31586b}.provlabel{fill:#e1eff8;font-size:15px;font-weight:800;pointer-events:none}.town{cursor:pointer;stroke:#d8e8f2;stroke-width:1.5}.town:hover{stroke:#fff;stroke-width:3}.mapnote{font-size:11px;color:var(--muted);padding:9px 13px;border-top:1px solid var(--line)}.riskrow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid #24364a}.riskrow:last-child{border:0}.riskbadge{width:9px;height:35px;border-radius:4px}.riskrow strong{display:block;font-size:12px}.riskrow small{color:var(--muted)}.riskrow .level{margin-left:auto;font-weight:800;font-size:11px}.feed{max-height:260px;overflow:auto}.feeditem{padding:10px 0;border-bottom:1px solid #24364a;display:flex;gap:9px}.feeditem:last-child{border:0}.feedicon{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#24364a;flex-shrink:0}.feeditem strong{display:block;font-size:12px}.feeditem p{margin:3px 0 0;color:#a8bbcf;font-size:11px}.alertitem{border:1px solid #5d3341;background:#291a27;padding:11px;border-radius:10px;margin-bottom:9px}.alertitem h3{font-size:12px;margin:0 0 5px}.alertitem p{font-size:11px;color:#c2ccda;margin:0 0 8px}.alertmeta{font-size:10px;color:#f7a9b2;margin-bottom:8px}.alertitem .btnrow button{font-size:11px;padding:6px}.empty{padding:20px;text-align:center;color:var(--muted);font-size:12px}.footer{max-width:1600px;margin:auto;padding:0 18px 20px;color:#7890a9;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#17283d;border:1px solid #46617d;border-radius:10px;padding:11px 16px;z-index:20;box-shadow:0 10px 40px #0008;display:none;max-width:90vw}.modalback{position:fixed;inset:0;background:#0009;z-index:10;display:none;place-items:center;padding:16px}.modal{width:min(500px,100%);background:#132237;border:1px solid #405773;border-radius:15px;padding:18px;box-shadow:0 20px 80px #0009}.modal h2{margin:0 0 10px}.modal p{color:#b4c5d8;font-size:13px}.progress{height:6px;background:#24374c;border-radius:99px;overflow:hidden;margin-top:8px}.progress div{height:100%;background:var(--blue);width:0;transition:width .25s}.hidden{display:none!important}
+@media(max-width:1100px){.layout{grid-template-columns:minmax(260px,330px) minmax(0,1fr)}.rightcol{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.rightcol .card{min-width:0}}
+@media(max-width:720px){.top{padding:10px;align-items:flex-start}.brand h1{font-size:14px}.topright{justify-content:flex-end}.layout{display:flex;flex-direction:column;padding:9px}.mapwrap,.mapwrap svg{min-height:340px}.rightcol{display:flex}.statgrid{grid-template-columns:repeat(3,1fr)}.footer{padding:0 12px 16px}.pill{font-size:10px}.btnrow button{min-width:100px}}
+
+.emergency-screen{position:fixed;inset:0;background:#05080dF5;z-index:50;display:none;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.emergency-screen.show{display:flex}
+.phone-alert{width:min(620px,100%);background:#f4f5f7;color:#151922;border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px #fff5,0 25px 100px #000b;font-family:Arial,Helvetica,sans-serif}
+.phone-alert-top{background:#b3202e;color:white;padding:17px 20px;display:flex;align-items:center;gap:12px}
+.phone-alert-symbol{width:42px;height:42px;border:2px solid white;border-radius:50%;display:grid;place-items:center;font-size:25px;font-weight:900;flex-shrink:0}
+.phone-alert-top strong{font-size:17px;letter-spacing:.4px;display:block}.phone-alert-top small{display:block;font-size:11px;opacity:.9;margin-top:3px}
+.phone-alert-body{padding:22px 22px 16px}.phone-alert-body .alert-kind{font-size:11px;font-weight:800;letter-spacing:1px;color:#a31b2b;text-transform:uppercase;margin-bottom:8px}
+.phone-alert-body h2{font-size:23px;line-height:1.2;margin:0 0 12px;color:#111827}.phone-alert-body .alert-zone{font-size:12px;color:#515b6a;margin-bottom:16px;font-weight:700}
+.phone-alert-body .alert-copy{white-space:pre-wrap;overflow-wrap:anywhere;font-size:16px;line-height:1.55;margin:0 0 20px}
+.phone-alert-bottom{padding:14px 22px 20px;border-top:1px solid #d7dbe1;background:#e9ecf1}.phone-alert-bottom button{width:100%;background:#a91f2e;border-color:#a91f2e;color:white;font-size:15px;padding:13px}
+.phone-alert-bottom .sim-note{font-size:10px;color:#5b6574;text-align:center;margin-top:10px}
+
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="brand"><div class="logo">ES</div><div><h1>ES-Alert CV <span style="color:#ff7585">SIMULADOR</span></h1><small>Centro de coordinación · Comunitat Valenciana</small></div></div>
+ <div class="topright"><span class="pill">🕒 <strong id="clock">08:00 · Día 1</strong></span><span class="pill">🎯 Puntuación <strong id="score">100</strong></span><button id="newGame" class="ghost">↻ Nueva partida</button></div>
+</header>
+<div class="warning">⚠️ SIMULACIÓN FICTICIA. No conecta con el 112, no envía avisos reales y no representa información meteorológica oficial.</div>
+<main class="layout">
+ <section class="column">
+  <div class="card">
+   <div class="cardhead"><h2>Control de la emergencia</h2><span class="pill" id="phase">VIGILANCIA</span></div>
+   <div class="cardbody">
+    <div class="statgrid"><div class="stat"><span>Riesgo actual</span><strong id="riskNum">32%</strong></div><div class="stat"><span>Incidentes</span><strong id="incidentNum">0</strong></div><div class="stat"><span>Avisos activos</span><strong id="activeNum">0</strong></div></div>
+    <div class="sectionlabel">Avanzar el tiempo</div>
+    <div class="btnrow"><button data-step="1">+ 1 h</button><button data-step="3">+ 3 h</button><button data-step="6">+ 6 h</button><button data-step="12">+ 12 h</button></div>
+    <div class="field" style="margin-top:12px"><label for="speed">Velocidad automática</label><select id="speed"><option value="0">Pausada</option><option value="1">1 hora / 5 s</option><option value="2">1 hora / 2 s</option></select></div>
+    <div class="sectionlabel">Situación meteorológica</div><div id="scenarioText" style="font-size:13px">Se está desarrollando una situación de lluvias intensas en el litoral central.</div>
+    <div class="progress"><div id="weatherProgress"></div></div><div class="tiny muted" style="margin-top:5px" id="forecast">Próxima actualización simulada en 2 horas.</div>
+   </div>
+  </div>
+  <div class="card">
+   <div class="cardhead"><h2>Emitir ES-Alert simulado</h2><span class="tiny muted">Decisión operativa</span></div>
+   <div class="cardbody">
+    <div class="field"><label for="alertTitle">Título del aviso</label><input id="alertTitle" value="Aviso de emergencia por riesgo meteorológico"></div>
+    <div class="field"><label for="alertLevel">Nivel de urgencia</label><select id="alertLevel"><option value="info">Información preventiva</option><option value="warn" selected>Alerta · precaución</option><option value="high">Alerta grave · evitar desplazamientos</option><option value="extreme">Emergencia · refugiarse y seguir instrucciones</option></select></div>
+    <div class="field"><label for="alertMessage">Instrucciones para la población</label><textarea id="alertMessage">Evite zonas inundables, barrancos y pasos inferiores. No cruce carreteras anegadas y siga las indicaciones de los servicios de emergencia.</textarea></div>
+    <div class="field"><label for="targetType">Zona de envío</label><select id="targetType"><option value="cv">Toda la Comunitat Valenciana</option><option value="province">Una provincia</option><option value="municipality">Municipios seleccionados</option><option value="comarca">Comarca (simulada)</option></select></div>
+    <div class="field hidden" id="provinceField"><label for="province">Provincia</label><select id="province"><option>Castellón</option><option>Valencia</option><option>Alicante</option></select></div>
+    <div class="field hidden" id="comarcaField"><label for="comarca">Comarca</label><select id="comarca"><option>Plana Alta</option><option>Plana Baixa</option><option>Alt Maestrat</option><option>Baix Maestrat</option><option>Alcalatén</option><option>Els Ports</option><option>Alto Palancia</option><option>Camp de Morvedre</option><option>Horta Nord</option><option>Horta Sud</option><option>València</option><option>Ribera Alta</option><option>Ribera Baixa</option><option>Safor</option><option>Costera</option><option>Vall d'Albaida</option><option>Requena-Utiel</option><option>Marina Alta</option><option>Marina Baixa</option><option>Alacantí</option><option>Baix Vinalopó</option><option>Baix Segura</option><option>Alt Vinalopó</option><option>Vinalopó Mitjà</option></select></div>
+    <div class="field hidden" id="townField"><label for="townSearch">Buscar municipio y añadir</label><div class="row"><input id="townSearch" list="townList" placeholder="Ej. Vila-real"><button id="addTown">Añadir</button></div><datalist id="townList"></datalist><div id="selectedTowns" class="tiny muted" style="margin-top:6px">Ningún municipio seleccionado.</div><div class="tiny muted" style="margin-top:5px">También puedes escribir un municipio manualmente. El modo «toda la Comunitat» incluye todos los municipios.</div></div>
+    <div class="btnrow"><button id="sendAlert" class="primary">📡 Emitir aviso simulado</button></div>
+    <div class="tiny muted" style="margin-top:8px">Los avisos emitidos quedan registrados aquí y afectan a la puntuación de la partida.</div>
+   </div>
+  </div>
+ </section>
+ <section class="column">
+  <div class="card">
+   <div class="cardhead"><h2>Mapa operativo</h2><span class="pill" id="mapStatus">Riesgo variable</span></div>
+   <div class="mapwrap">
+    <div class="maptitle">COMUNITAT VALENCIANA · MAPA ESQUEMÁTICO</div>
+    <svg viewBox="0 0 620 600" role="img" aria-label="Mapa esquemático interactivo de las tres provincias">
+     <defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#1a2b3e" stroke-width="1"/></pattern><radialGradient id="sea"><stop stop-color="#15384b"/><stop offset="1" stop-color="#091624"/></radialGradient></defs>
+     <rect width="620" height="600" fill="url(#sea)"/><rect width="620" height="600" fill="url(#grid)"/>
+     <path class="province" id="pCastellon" data-province="Castellón" d="M245 42 L357 32 L395 76 L388 139 L355 183 L315 206 L274 180 L240 127 Z"/>
+     <path class="province" id="pValencia" data-province="Valencia" d="M240 127 L274 180 L315 206 L355 183 L378 228 L363 289 L329 334 L294 371 L250 354 L217 314 L197 260 L208 203 Z"/>
+     <path class="province" id="pAlicante" data-province="Alicante" d="M250 354 L294 371 L329 334 L363 289 L405 326 L417 378 L395 438 L365 493 L314 516 L279 480 L261 425 Z"/>
+     <path d="M245 42 L357 32 L395 76 L388 139 L355 183 L378 228 L363 289 L405 326 L417 378 L395 438 L365 493 L314 516 L279 480 L261 425 L250 354 L217 314 L197 260 L208 203 L240 127 Z" fill="none" stroke="#85b6c7" stroke-width="3"/>
+     <text class="provlabel" x="302" y="103" text-anchor="middle">CASTELLÓN</text><text class="provlabel" x="284" y="267" text-anchor="middle">VALENCIA</text><text class="provlabel" x="335" y="423" text-anchor="middle">ALICANTE</text>
+     <g id="townDots">
+      <circle class="town" data-town="Vinaròs" data-province="Castellón" cx="366" cy="56" r="6" fill="#4ed6a1"><title>Vinaròs</title></circle><circle class="town" data-town="Benicarló" data-province="Castellón" cx="357" cy="75" r="5" fill="#4ed6a1"><title>Benicarló</title></circle><circle class="town" data-town="Castelló de la Plana" data-province="Castellón" cx="329" cy="147" r="7" fill="#ffad42"><title>Castelló de la Plana</title></circle><circle class="town" data-town="Vila-real" data-province="Castellón" cx="342" cy="166" r="6" fill="#ffad42"><title>Vila-real</title></circle><circle class="town" data-town="Onda" data-province="Castellón" cx="301" cy="165" r="5" fill="#4ed6a1"><title>Onda</title></circle><circle class="town" data-town="Morella" data-province="Castellón" cx="283" cy="79" r="5" fill="#4ed6a1"><title>Morella</title></circle>
+      <circle class="town" data-town="Sagunt" data-province="Valencia" cx="346" cy="207" r="6" fill="#ffad42"><title>Sagunt</title></circle><circle class="town" data-town="València" data-province="Valencia" cx="333" cy="254" r="8" fill="#ff4f64"><title>València</title></circle><circle class="town" data-town="Torrent" data-province="Valencia" cx="313" cy="274" r="6" fill="#ffad42"><title>Torrent</title></circle><circle class="town" data-town="Gandia" data-province="Valencia" cx="361" cy="314" r="6" fill="#4ed6a1"><title>Gandia</title></circle><circle class="town" data-town="Requena" data-province="Valencia" cx="235" cy="275" r="5" fill="#4ed6a1"><title>Requena</title></circle><circle class="town" data-town="Xàtiva" data-province="Valencia" cx="306" cy="321" r="5" fill="#4ed6a1"><title>Xàtiva</title></circle>
+      <circle class="town" data-town="Dénia" data-province="Alicante" cx="377" cy="346" r="5" fill="#4ed6a1"><title>Dénia</title></circle><circle class="town" data-town="Benidorm" data-province="Alicante" cx="370" cy="391" r="6" fill="#4ed6a1"><title>Benidorm</title></circle><circle class="town" data-town="Alacant" data-province="Alicante" cx="348" cy="444" r="8" fill="#ffad42"><title>Alacant</title></circle><circle class="town" data-town="Elx" data-province="Alicante" cx="327" cy="467" r="6" fill="#4ed6a1"><title>Elx</title></circle><circle class="town" data-town="Orihuela" data-province="Alicante" cx="313" cy="500" r="5" fill="#4ed6a1"><title>Orihuela</title></circle>
+     </g>
+     <g id="weatherOverlay" opacity=".65"><circle cx="330" cy="260" r="66" fill="#ff4f64" opacity=".15"/><circle cx="330" cy="260" r="43" fill="none" stroke="#ff4f64" stroke-width="2" stroke-dasharray="5 6"/><circle cx="350" cy="155" r="48" fill="none" stroke="#ffad42" stroke-width="2" stroke-dasharray="5 6"/></g>
+     <text x="30" y="565" fill="#63859b" font-size="11">ESQUEMA ORIENTATIVO · NO CARTOGRAFÍA OFICIAL</text>
+    </svg>
+    <div class="maplegend"><span><i class="dot" style="background:#4ed6a1"></i>Bajo</span><span><i class="dot" style="background:#ffad42"></i>Alto</span><span><i class="dot" style="background:#ff4f64"></i>Muy alto</span><span>● Pulsa una provincia o municipio</span></div>
+   </div><div class="mapnote">El mapa es esquemático y los puntos son ilustrativos; no representa límites municipales exactos. Pulsa una provincia para seleccionarla como destino del aviso.</div>
+  </div>
+  <div class="card">
+   <div class="cardhead"><h2>Evaluación de la decisión</h2><span class="pill" id="rating">En curso</span></div>
+   <div class="cardbody"><div class="statgrid"><div class="stat"><span>Oportunidad</span><strong id="timingScore">—</strong></div><div class="stat"><span>Alcance</span><strong id="targetScore">—</strong></div><div class="stat"><span>Proporción</span><strong id="levelScore">—</strong></div></div><p class="tiny muted" id="feedback" style="margin-bottom:0">Observa la evolución de la situación y decide cuándo avisar. Los criterios son didácticos y ficticios.</p></div>
+  </div>
+ </section>
+ <section class="column rightcol">
+  <div class="card"><div class="cardhead"><h2>Riesgo por provincia</h2><span class="tiny muted">simulado</span></div><div class="cardbody" id="provinceRisks"></div></div>
+  <div class="card"><div class="cardhead"><h2>Avisos activos</h2><span class="pill" id="alertsCount">0</span></div><div class="cardbody" id="alertsList"><div class="empty">Todavía no hay avisos emitidos.</div></div></div>
+  <div class="card"><div class="cardhead"><h2>Parte de incidencias</h2><span class="tiny muted">últimos eventos</span></div><div class="cardbody feed" id="feed"></div></div>
+  <div class="card"><div class="cardhead"><h2>Cómo jugar</h2></div><div class="cardbody tiny muted">1. Avanza el reloj y lee la evolución de la emergencia.<br><br>2. Observa el riesgo provincial y los incidentes.<br><br>3. Emite un aviso con nivel y zona adecuados; puedes editarlo o cancelarlo después.<br><br>4. Revisa la evaluación: avisar demasiado pronto, tarde o a una zona demasiado amplia puede restar puntos.<br><br>5. Cada partida genera una situación ficticia distinta.</div></div>
+ </section>
+</main>
+<footer class="footer"><span>Proyecto independiente de simulación educativa · No es una herramienta oficial de ES-Alert.</span><span>Datos meteorológicos, sucesos, puntuación y avisos: inventados para el juego.</span></footer>
+
+<div class="emergency-screen" id="emergencyScreen" role="dialog" aria-modal="true" aria-labelledby="emergencyHeading">
+ <div class="phone-alert">
+  <div class="phone-alert-top"><div class="phone-alert-symbol">!</div><div><strong>ALERTA DE EMERGENCIA</strong><small>ES-Alert CV · SIMULACIÓN</small></div></div>
+  <div class="phone-alert-body"><div class="alert-kind" id="screenAlertKind">ALERTA</div><h2 id="emergencyHeading">Aviso de emergencia</h2><div class="alert-zone" id="screenAlertZone">Zona afectada</div><p class="alert-copy" id="screenAlertCopy"></p></div>
+  <div class="phone-alert-bottom"><button id="ackAlert">He leído el aviso</button><div class="sim-note">Aviso ficticio de simulación. No es un mensaje oficial ni una alerta real.</div></div>
+ </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="modalback" id="modal"><div class="modal"><h2 id="modalTitle">Editar aviso</h2><p id="modalDesc"></p><div class="field"><label for="editTitle">Título</label><input id="editTitle"></div><div class="field"><label for="editMessage">Instrucciones</label><textarea id="editMessage"></textarea></div><div class="btnrow"><button id="saveEdit" class="good">Guardar cambios</button><button id="closeModal">Cerrar</button></div></div></div>
+<script>
+const provinces=["Castellón","Valencia","Alicante"];
+const towns=["Albocàsser","Alcalà de Xivert","Alcoi","Alacant","Almassora","Almenara","Alzira","Altea","Alzira","Benicarló","Benicàssim","Benidorm","Borriana","Calp","Carcaixent","Castelló de la Plana","Cullera","Dénia","El Campello","Elx","Elda","Gandia","Guardamar del Segura","Llíria","Manises","Morella","Nules","Onda","Ontinyent","Orihuela","Peníscola","Paterna","Pego","Petrer","Requena","Sagunt","Sant Vicent del Raspeig","Silla","Sueca","Tavernes de la Valldigna","Torrent","Torrevieja","València","Vila-real","Vinaròs","Xàbia","Xàtiva","Xirivella","Xixona","La Vall d'Uixó","Vall d'Alba","Vila Joiosa","Villena","Paiporta","Catarroja","Aldaia","Alaquàs","Picassent","Massamagrell","Burjassot","Mislata","Quart de Poblet","Riba-roja de Túria","Alboraya","L'Alcúdia","Benaguasil","Llíria","Alginet","Utiel","Ademuz","Ares del Maestrat","Atzeneta del Maestrat","Benassal","Cabanes","Forcall","Jérica","Segorbe","Vilafamés","Alcalà de la Jovada","Callosa d'en Sarrià","Crevillent","Ibi","Monòver","Novelda","Pilar de la Horadada","Santa Pola","Teulada","Villajoyosa"];
+const state={hour:8,day:1,risks:{Castellón:34,Valencia:58,Alicante:24},incidentCount:0,alerts:[],feed:[],score:100,scenario:0,peakHour:14,peak:78,alerted:false,selectedTowns:[],auto:null,elapsed:0,events:[],ended:false};
+const scenarios=[
+ {name:"Episodio de lluvias intensas",text:"Una banda de precipitación simulada se aproxima al litoral. Se esperan chubascos localmente fuertes y acumulaciones rápidas.",icon:"🌧️",peak:82,provs:{Castellón:65,Valencia:86,Alicante:38},inc:["Aviso de acumulación de agua en un paso inferior","Una rambla presenta aumento rápido de caudal","Se reporta una carretera secundaria con balsas de agua"]},
+ {name:"Tormentas y granizo",text:"Se desarrollan tormentas aisladas con posible granizo y rachas fuertes. La localización más intensa puede variar.",icon:"⛈️",peak:77,provs:{Castellón:77,Valencia:54,Alicante:63},inc:["Se registra granizo en una zona rural","Caída de ramas por una racha de viento","Incidencia temporal en una vía comarcal"]},
+ {name:"Viento fuerte",text:"Un episodio de viento simulado afecta a zonas interiores y puntos del litoral. Atención a objetos inestables y arbolado.",icon:"💨",peak:72,provs:{Castellón:71,Valencia:62,Alicante:58},inc:["Racha fuerte registrada en una estación ficticia","Aviso por rama caída en una calle","Una actividad al aire libre queda suspendida preventivamente"]},
+ {name:"Ola de calor",text:"Las temperaturas simuladas suben de forma persistente. El riesgo aumenta durante las horas centrales y en zonas urbanas.",icon:"☀️",peak:68,provs:{Castellón:53,Valencia:72,Alicante:75},inc:["Se activa un punto de atención por golpe de calor","Se recomienda hidratarse y evitar esfuerzos al sol","Aumenta la demanda de asistencia en una zona urbana"]},
+ {name:"Temporal marítimo",text:"Se espera oleaje intenso y viento costero. Las playas, espigones y paseos marítimos pueden resultar peligrosos.",icon:"🌊",peak:75,provs:{Castellón:63,Valencia:78,Alicante:69},inc:["Se cierra preventivamente un tramo de paseo marítimo","Aviso por fuerte oleaje en una zona de costa","Una actividad náutica queda suspendida"]},
+ {name:"Frío intenso y nieve",text:"Una entrada de aire frío simulada puede provocar heladas y nieve en cotas interiores. El riesgo varía con la altitud.",icon:"❄️",peak:61,provs:{Castellón:73,Valencia:46,Alicante:34},inc:["Posible placa de hielo en una carretera interior","Se informa de nieve en un puerto de montaña ficticio","Se recomienda precaución en desplazamientos nocturnos"]}
+];
+function $(id){return document.getElementById(id)}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function timeText(){return String(state.hour).padStart(2,"0")+":00 · Día "+state.day}
+function toast(t){$("toast").textContent=t;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",2700)}
+function addFeed(title,desc,icon="ℹ️"){state.feed.unshift({title,desc,icon,time:timeText()});state.feed=state.feed.slice(0,18);renderFeed()}
+function renderFeed(){$("feed").innerHTML=state.feed.map(f=>`<div class="feeditem"><div class="feedicon">${f.icon}</div><div><strong>${f.title}</strong><p>${f.time} · ${f.desc}</p></div></div>`).join("")||'<div class="empty">Sin incidencias registradas.</div>'}
+function currentScenario(){return scenarios[state.scenario]}
+function renderRisks(){
+ $("provinceRisks").innerHTML=provinces.map(p=>{let v=state.risks[p],c=v>=75?"var(--red)":v>=50?"var(--orange)":v>=30?"var(--yellow)":"var(--green)",level=v>=75?"MUY ALTO":v>=50?"ALTO":v>=30?"MODERADO":"BAJO";return `<div class="riskrow"><div class="riskbadge" style="background:${c}"></div><div><strong>${p}</strong><small>Índice de riesgo simulado</small></div><div class="level" style="color:${c}">${level}<br>${v}%</div></div>`}).join("");
+ $("riskNum").textContent=Math.max(...Object.values(state.risks))+"%";
+ $("incidentNum").textContent=state.incidentCount;$("activeNum").textContent=state.alerts.filter(a=>a.active).length;$("alertsCount").textContent=state.alerts.filter(a=>a.active).length;
+}
+function renderAlerts(){
+ const arr=state.alerts.filter(a=>a.active);
+ $("alertsList").innerHTML=arr.length?arr.map(a=>`<div class="alertitem"><h3>📡 ${esc(a.title)}</h3><div class="alertmeta">${a.levelLabel} · ${esc(a.target)} · ${a.time}</div><p>${esc(a.message)}</p><div class="btnrow"><button data-edit="${a.id}">Editar</button><button data-cancel="${a.id}">Cancelar aviso</button></div></div>`).join(""):'<div class="empty">Todavía no hay avisos emitidos.</div>';
+ document.querySelectorAll("[data-cancel]").forEach(b=>b.onclick=()=>cancelAlert(+b.dataset.cancel));
+ document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editAlert(+b.dataset.edit));
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function render(){ $("clock").textContent=timeText();$("score").textContent=state.score;$("phase").textContent=Math.max(...Object.values(state.risks))>=75?"EMERGENCIA":Math.max(...Object.values(state.risks))>=50?"PREALERTA":"VIGILANCIA";$("scenarioText").textContent=currentScenario().icon+" "+currentScenario().text;$("weatherProgress").style.width=Math.min(100,state.elapsed/Math.max(1,state.peakHour)*100)+"%";$("forecast").textContent="Pico de riesgo estimado para las "+String(state.peakHour).padStart(2,"0")+":00 · previsión ficticia.";renderRisks();renderAlerts();renderFeed()}
+function updateRisk(){let s=currentScenario();let distance=Math.abs(state.elapsed-state.peakHour);let wave=Math.max(0,s.peak-distance*4);provinces.forEach(p=>{let base=s.provs[p];state.risks[p]=Math.max(5,Math.min(98,Math.round(base*(.35+.65*Math.max(0,1-distance/20))+rand(-8,8))))});if(state.elapsed===state.peakHour||Math.random()<.18){let pool=s.inc;let incident=pool[rand(0,pool.length-1)];state.incidentCount++;addFeed("Nueva incidencia",incident,s.icon);toast("Nueva incidencia: "+incident);if(state.incidentCount%3===0)state.score=Math.max(0,state.score-2)}}
+function advance(hours){for(let i=0;i<hours;i++){state.hour++;state.elapsed++;if(state.hour>=24){state.hour=0;state.day++}if(state.elapsed>0&&state.elapsed%4===0)updateRisk();if(state.elapsed>32){state.elapsed=0;state.scenario=(state.scenario+1)%scenarios.length;state.peakHour=rand(8,18);state.incidentCount=0;state.alerted=false;addFeed("Cambio de escenario","Se inicia un nuevo episodio meteorológico ficticio.",currentScenario().icon)}}render()}
+function targetDescription(){let type=$("targetType").value;if(type==="cv")return "Toda la Comunitat Valenciana";if(type==="province")return $("province").value;if(type==="comarca")return "Comarca: "+$("comarca").value;if(!state.selectedTowns.length)return null;return state.selectedTowns.join(", ")}
+
+let alertAudioContext=null, alertSoundTimer=null;
+function playEmergencyTone(){
+  // Tono de aviso generado por el navegador; no usa ni copia un archivo de audio oficial.
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!alertAudioContext)alertAudioContext=new AC();
+    const ctx=alertAudioContext;
+    if(ctx.state==="suspended")ctx.resume();
+    if(alertSoundTimer)clearInterval(alertSoundTimer);
+    const burst=()=>{
+      if(!document.getElementById("emergencyScreen").classList.contains("show"))return;
+      const start=ctx.currentTime;
+      // Tres pulsos ascendentes tipo aviso de emergencia, con pausas cortas.
+      [880,1046,880].forEach((freq,i)=>{
+        const osc=ctx.createOscillator(), gain=ctx.createGain();
+        const t=start+i*.32;
+        osc.type="sine";osc.frequency.setValueAtTime(freq,t);
+        gain.gain.setValueAtTime(.0001,t);gain.gain.exponentialRampToValueAtTime(.22,t+.025);gain.gain.setValueAtTime(.22,t+.16);gain.gain.exponentialRampToValueAtTime(.0001,t+.22);
+        osc.connect(gain);gain.connect(ctx.destination);osc.start(t);osc.stop(t+.24);
+      });
+    };
+    burst();alertSoundTimer=setInterval(burst,1900);
+  }catch(e){console.warn("No se pudo reproducir el tono de simulación",e)}
+}
+function stopEmergencyTone(){if(alertSoundTimer){clearInterval(alertSoundTimer);alertSoundTimer=null}}
+function showPhoneAlert(a){
+ const names={info:"INFORMACIÓN PREVENTIVA",warn:"ALERTA",high:"ALERTA GRAVE",extreme:"EMERGENCIA"};
+ $("screenAlertKind").textContent=names[a.level]||"ALERTA";
+ $("emergencyHeading").textContent=a.title;
+ $("screenAlertZone").textContent="ZONA: "+a.target+" · "+a.time;
+ $("screenAlertCopy").textContent=a.message;
+ $("emergencyScreen").classList.add("show");
+ playEmergencyTone();
+}
+function dismissPhoneAlert(){stopEmergencyTone();$("emergencyScreen").classList.remove("show")}
+
+function sendAlert(){
+ let target=targetDescription();if(!target){toast("Añade al menos un municipio para emitir el aviso.");return}
+ let level=$("alertLevel").value, labels={info:"INFORMATIVO",warn:"ALERTA",high:"ALERTA GRAVE",extreme:"EMERGENCIA"},maxRisk=Math.max(...Object.values(state.risks));
+ let id=Date.now(),a={id,title:$("alertTitle").value.trim()||"Aviso de emergencia",message:$("alertMessage").value.trim()||"Siga las instrucciones de las autoridades.",level,levelLabel:labels[level],target,time:timeText(),active:true};
+ state.alerts.unshift(a);state.alerted=true;
+ let needed=maxRisk>=82?"extreme":maxRisk>=68?"high":maxRisk>=45?"warn":"info";
+ let scoreTiming=state.elapsed<2?55:state.elapsed<10?95:state.elapsed<16?70:35;
+ let scope=target==="Toda la Comunitat Valenciana"?60:(provinces.includes(target)?80:target.startsWith("Comarca")?85:90);
+ let severity=level===needed?100:Math.abs(["info","warn","high","extreme"].indexOf(level)-["info","warn","high","extreme"].indexOf(needed))===1?70:35;
+ let delta=Math.round((scoreTiming+scope+severity)/3)-65;state.score=Math.max(0,Math.min(999,state.score+delta));
+ $("timingScore").textContent=scoreTiming+"%";$("targetScore").textContent=scope+"%";$("levelScore").textContent=severity+"%";
+ let feedback=scoreTiming>80?"Buen momento de emisión. ":scoreTiming<50?"El aviso parece tardío o demasiado prematuro. ":"Momento de emisión mejorable. ";
+ feedback+=scope<70?"La zona podría ser demasiado amplia. ":"La selección territorial es razonable. ";
+ feedback+=severity>80?"El nivel se ajusta al riesgo estimado.":"Revisa si el nivel del aviso coincide con la gravedad simulada.";
+ $("feedback").textContent=feedback;$("rating").textContent=delta>=15?"Buena decisión":delta>=0?"Aceptable":"A mejorar";
+ addFeed("ES-Alert simulado emitido",`${a.levelLabel} para ${a.target}.`, "📡");render();showPhoneAlert(a);toast("Aviso simulado emitido. No se ha enviado ningún mensaje real.");
+}
+function cancelAlert(id){let a=state.alerts.find(x=>x.id===id);if(a){a.active=false;addFeed("Aviso cancelado",`${a.title} · ${a.target}`,"🟢");render();toast("Aviso cancelado en la simulación.")}}
+let editing=null;
+function editAlert(id){let a=state.alerts.find(x=>x.id===id);if(!a)return;editing=id;$("editTitle").value=a.title;$("editMessage").value=a.message;$("modalDesc").textContent="Modificar aviso activo para "+a.target+"."; $("modal").style.display="grid"}
+$("saveEdit").onclick=()=>{let a=state.alerts.find(x=>x.id===editing);if(a){a.title=$("editTitle").value.trim()||a.title;a.message=$("editMessage").value.trim()||a.message;addFeed("Aviso actualizado",a.title,"✏️");render();toast("Aviso actualizado.")}$("modal").style.display="none"};$("closeModal").onclick=()=>$("modal").style.display="none";
+function newGame(){if(state.auto){clearInterval(state.auto);state.auto=null}$("speed").value="0";state.hour=8;state.day=1;state.risks={Castellón:rand(20,50),Valencia:rand(35,65),Alicante:rand(15,45)};state.incidentCount=0;state.alerts=[];state.feed=[];state.score=100;state.scenario=rand(0,scenarios.length-1);state.peakHour=rand(11,18);state.peak=scenarios[state.scenario].peak;state.alerted=false;state.selectedTowns=[];state.elapsed=0;state.ended=false;$("selectedTowns").textContent="Ningún municipio seleccionado.";$("timingScore").textContent=$("targetScore").textContent=$("levelScore").textContent="—";$("feedback").textContent="Observa la evolución de la situación y decide cuándo avisar. Los criterios son didácticos y ficticios.";$("rating").textContent="En curso";addFeed("Partida iniciada","Nueva emergencia meteorológica ficticia generada.",currentScenario().icon);updateRisk();render();toast("Nueva partida preparada.")}
+function updateTargetFields(){let t=$("targetType").value;$("provinceField").classList.toggle("hidden",t!=="province");$("comarcaField").classList.toggle("hidden",t!=="comarca");$("townField").classList.toggle("hidden",t!=="municipality")}
+function addTown(){let t=$("townSearch").value.trim();if(!t){toast("Escribe un municipio.");return}if(!state.selectedTowns.some(x=>x.toLocaleLowerCase()===t.toLocaleLowerCase()))state.selectedTowns.push(t);$("townSearch").value="";$("selectedTowns").innerHTML=state.selectedTowns.map(t=>`<span class="pill" style="display:inline-block;margin:3px">${esc(t)} <button data-remove="${esc(t)}" style="padding:0 5px;border:0;background:transparent">×</button></span>`).join("");document.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{state.selectedTowns=state.selectedTowns.filter(x=>x!==b.dataset.remove);addTownRender()})}
+function addTownRender(){$("selectedTowns").innerHTML=state.selectedTowns.length?state.selectedTowns.map(t=>`<span class="pill" style="display:inline-block;margin:3px">${esc(t)} <button data-remove="${esc(t)}" style="padding:0 5px;border:0;background:transparent">×</button></span>`).join(""):"Ningún municipio seleccionado.";document.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{state.selectedTowns=state.selectedTowns.filter(x=>x!==b.dataset.remove);addTownRender()})}
+document.querySelectorAll("[data-step]").forEach(b=>b.onclick=()=>advance(+b.dataset.step));
+$("targetType").onchange=updateTargetFields;$("addTown").onclick=addTown;$("townSearch").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();addTown()}});
+$("sendAlert").onclick=sendAlert;$("newGame").onclick=newGame;$("ackAlert").onclick=dismissPhoneAlert;
+$("speed").onchange=()=>{if(state.auto)clearInterval(state.auto);state.auto=null;let v=+$("speed").value;if(v)state.auto=setInterval(()=>advance(1),v===1?5000:2000)};
+document.querySelectorAll(".province").forEach(p=>p.addEventListener("click",()=>{$("targetType").value="province";updateTargetFields();$("province").value=p.dataset.province;toast("Destino seleccionado: "+p.dataset.province)}));
+document.querySelectorAll(".town").forEach(p=>p.addEventListener("click",()=>{$("targetType").value="municipality";updateTargetFields();if(!state.selectedTowns.includes(p.dataset.town))state.selectedTowns.push(p.dataset.town);addTownRender();toast("Municipio añadido: "+p.dataset.town)}));
+$("townList").innerHTML=towns.map(t=>`<option value="${esc(t)}">`).join("");
+newGame();
+</script>
+</body></html>
